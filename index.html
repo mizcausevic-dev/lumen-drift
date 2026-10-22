@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" data-theme="cosmic" data-mode="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      try {
+        var theme = localStorage.getItem("lumen-theme");
+        var mode = localStorage.getItem("lumen-mode");
+        var allowed = ["bento", "cosmic", "swiss", "aqua", "brutal", "steel", "parchment"];
+        if (theme && allowed.indexOf(theme) !== -1) document.documentElement.dataset.theme = theme;
+        if (mode === "light" || mode === "dark") document.documentElement.dataset.mode = mode;
+      } catch (e) {}
+    </script>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumen Drift: 50 Nocturnal MIDI Pad Progressions</title>
+    <meta
+      name="description"
+      content="Fifty original MIDI pad progressions for atmospheric electronic music. Synthwave and darkwave harmony with ambient patience. Play each loop, read the voicing, and download the files."
+    />
+    <link rel="canonical" href="https://mizcausevic-dev.github.io/lumen-drift/" />
+    <meta property="og:title" content="Lumen Drift: 50 Nocturnal MIDI Pad Progressions" />
+    <meta
+      property="og:description"
+      content="Fifty original pad loops for nocturnal electronic arrangements. Harmony, voicing, and MIDI downloads. A preview synth, not a sample pack."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mizcausevic-dev.github.io/lumen-drift/" />
+    <meta property="og:image" content="https://mizcausevic-dev.github.io/lumen-drift/images/hero-lumen-drift.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Lumen Drift: 50 Nocturnal MIDI Pad Progressions" />
+    <meta
+      name="twitter:description"
+      content="Play and download fifty original MIDI pad progressions for atmospheric electronic arrangements."
+    />
+    <meta name="twitter:image" content="https://mizcausevic-dev.github.io/lumen-drift/images/hero-lumen-drift.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fraunces:opsz,wght@9..144,560;9..144,620&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@360;500;640&family=Space+Grotesk:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Dataset",
+        "name": "Lumen Drift",
+        "description": "Fifty original MIDI pad progressions in five groups, with harmonic documentation and a browser listening room.",
+        "creator": {
+          "@type": "Organization",
+          "name": "Kinetic Gain",
+          "url": "https://kineticgain.com"
+        },
+        "keywords": ["MIDI", "pad progressions", "synthwave", "darkwave", "ambient", "electronic music"],
+        "isAccessibleForFree": true,
+        "url": "https://mizcausevic-dev.github.io/lumen-drift/"
+      }
+    </script>
+    <script type="module" crossorigin src="./assets/index-DSv7MKoo.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Cgiu7xGz.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

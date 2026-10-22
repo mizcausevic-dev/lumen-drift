@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mizcausevic-dev.github.io/lumen-drift/sitemap.xml
