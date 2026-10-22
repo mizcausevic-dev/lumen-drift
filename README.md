@@ -104,7 +104,7 @@ The script reopens every MIDI file and writes `VALIDATION-REPORT-Cursor.md` from
 
 ## Listening room
 
-The site in `web/` plays the same note list the MIDI files contain, through a small Web Audio pad. From `web/`:
+The site in `web/` is the listening room: a pad lab that parses each `.mid`, a harmony map, a mindmap, the validation report, the product brief, and the essay at `article.html`. The preview synth plays the same note list the MIDI files contain. From `web/`:
 
 ```bash
 npm install

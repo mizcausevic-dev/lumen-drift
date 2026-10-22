@@ -48,6 +48,35 @@ export type CollectionFile = {
   patterns: Pattern[]
 }
 
+export type ValidationCheck = {
+  id: string
+  name: string
+  status: string
+  detail: string
+  problems: string[]
+}
+
+export type ValidationReport = {
+  title: string
+  result: string
+  payload_sha256: string
+  validator: string
+  summary: {
+    midi_files: number
+    note_events: number
+    harmonic_events: number
+    checks: number
+    passed: number
+    failed: number
+  }
+  checks: ValidationCheck[]
+  shared_roman_sequences: { ids: string[]; romans: string[] }[]
+  shared_harmonic_rhythms: { ids: string[]; ticks: number[] }[]
+  loops_without_a_common_tone_boundary: string[]
+  limitations: string[]
+  reproduce: string
+}
+
 export const THEMES = [
   ["bento", "Bento Grid"],
   ["cosmic", "Cosmic Cyber"],

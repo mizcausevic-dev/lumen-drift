@@ -1,8 +1,24 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { PadEngine } from "./audio"
+import { LabProvider, type MidiCheck } from "./lab"
+import { parseMidiNotes, sameNotes } from "./midi"
+import {
+  ArticleTeaser,
+  Brief,
+  DropBand,
+  HarmonyMap,
+  Hero,
+  Marquee,
+  Mindmap,
+  Pipeline,
+  SiteFooter,
+  SiteNav,
+  SoundDesign,
+  ThemeBar,
+  ValidationPanel,
+} from "./sections"
 import {
   GROUP_ART,
-  THEMES,
   asset,
   readStoredMode,
   readStoredTheme,
@@ -10,6 +26,7 @@ import {
   type ModeId,
   type Pattern,
   type ThemeId,
+  type ValidationReport,
 } from "./types"
 
 function positionLabel(tick: number): string {
@@ -30,22 +47,16 @@ function PianoRoll({ pattern, tick }: { pattern: Pattern; tick: number }) {
   const width = 920
   const height = 210
   const left = 40
-  const top = 14
   const pitches = pattern.notes.map((note) => note.pitch)
   const lo = Math.min(...pitches)
   const hi = Math.max(...pitches)
   const span = Math.max(1, hi - lo)
   const innerH = height - 28
   const x = (value: number) => left + (value / pattern.loopTicks) * (width - left - 10)
-  const y = (pitch: number) => top + ((hi - pitch) / span) * innerH
+  const y = (pitch: number) => 14 + ((hi - pitch) / span) * innerH
   const row = Math.max(4, innerH / (span + 1) - 1)
   return (
     <svg className="roll" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`MIDI piano roll for ${pattern.name}`}>
-      {[lo, hi].map((pitch) => (
-        <text key={pitch} x={4} y={y(pitch) + 8} fill="currentColor" opacity={0.55} fontSize={10} fontFamily="ui-monospace, monospace">
-          {pitch}
-        </text>
-      ))}
       {pattern.notes.map((note) => (
         <rect
           key={`${note.pitch}-${note.start}-${note.duration}`}
@@ -76,9 +87,6 @@ function HarmonyDiagram({ pattern }: { pattern: Pattern }) {
   const y = (pitch: number) => 18 + ((hi - pitch) / span) * 150
   return (
     <svg className="score" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`Harmonic rhythm and common tones for ${pattern.name}`}>
-      <text x={left} y={14} fill="currentColor" opacity={0.6} fontSize={11} fontFamily="ui-monospace, monospace">
-        Intended harmony. Lines are pitches held from one event into the next.
-      </text>
       {pattern.events.map((event) => {
         const x0 = x(event.startTick)
         const x1 = x(event.startTick + event.durationTicks)
@@ -88,9 +96,6 @@ function HarmonyDiagram({ pattern }: { pattern: Pattern }) {
             <text x={x0 + 4} y={210} fill="currentColor" fontSize={11} fontFamily="ui-monospace, monospace">
               {event.number}. {event.roman}
             </text>
-            {event.pitches.map((pitch) => (
-              <circle key={pitch} cx={x0 + 8} cy={y(pitch)} r={3.2} fill="var(--note)" />
-            ))}
           </g>
         )
       })}
@@ -114,21 +119,31 @@ function HarmonyDiagram({ pattern }: { pattern: Pattern }) {
   )
 }
 
+function initialId(): string {
+  const hash = window.location.hash.replace("#", "")
+  return /^\d{3}$/.test(hash) ? hash : "001"
+}
+
 export default function App() {
   const [collection, setCollection] = useState<CollectionFile | null>(null)
+  const [report, setReport] = useState<ValidationReport | null>(null)
   const [error, setError] = useState<string | null>(null)
-  const [selectedId, setSelectedId] = useState("001")
-  const [group, setGroup] = useState<string>("all")
+  const [selectedId, setSelectedId] = useState(initialId)
+  const [group, setGroup] = useState("all")
+  const [bars, setBars] = useState("any")
+  const [modeName, setModeName] = useState("any")
+  const [borrowedOnly, setBorrowedOnly] = useState(false)
+  const [query, setQuery] = useState("")
+  const [showNotes, setShowNotes] = useState(false)
   const [theme, setTheme] = useState<ThemeId>(readStoredTheme)
   const [mode, setMode] = useState<ModeId>(readStoredMode)
   const [playing, setPlaying] = useState(false)
   const [tick, setTick] = useState(0)
   const [audioError, setAudioError] = useState<string | null>(null)
+  const [midiCheck, setMidiCheck] = useState<MidiCheck>("checking")
+  const [soundOverride, setSoundOverride] = useState("")
   const engineRef = useRef<PadEngine | null>(null)
-
-  if (!engineRef.current) {
-    engineRef.current = new PadEngine(setPlaying)
-  }
+  if (!engineRef.current) engineRef.current = new PadEngine(setPlaying)
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
@@ -137,19 +152,26 @@ export default function App() {
       localStorage.setItem("lumen-theme", theme)
       localStorage.setItem("lumen-mode", mode)
     } catch {
-      /* ignore */
+      /* private mode */
     }
   }, [theme, mode])
 
   useEffect(() => {
     let cancel = false
-    fetch(asset("data/collection.json"))
-      .then((response) => {
-        if (!response.ok) throw new Error(`Could not load collection.json (${response.status})`)
+    Promise.all([
+      fetch(asset("data/collection.json")).then((response) => {
+        if (!response.ok) throw new Error(`collection.json ${response.status}`)
         return response.json() as Promise<CollectionFile>
-      })
-      .then((data) => {
-        if (!cancel) setCollection(data)
+      }),
+      fetch(asset("data/validation.json")).then((response) => {
+        if (!response.ok) throw new Error(`validation.json ${response.status}`)
+        return response.json() as Promise<ValidationReport>
+      }),
+    ])
+      .then(([data, validation]) => {
+        if (cancel) return
+        setCollection(data)
+        setReport(validation)
       })
       .catch((reason: unknown) => {
         if (!cancel) setError(reason instanceof Error ? reason.message : "Could not load the collection")
@@ -159,13 +181,34 @@ export default function App() {
     }
   }, [])
 
+  const pattern = collection?.patterns.find((item) => item.id === selectedId) ?? collection?.patterns[0]
+
+  useEffect(() => {
+    if (!pattern) return
+    let cancel = false
+    setMidiCheck("checking")
+    fetch(asset(`midi/${pattern.filename}`))
+      .then((response) => {
+        if (!response.ok) throw new Error(`MIDI ${response.status}`)
+        return response.arrayBuffer()
+      })
+      .then((buffer) => {
+        if (cancel) return
+        setMidiCheck(sameNotes(parseMidiNotes(buffer), pattern.notes) ? "match" : "mismatch")
+      })
+      .catch(() => {
+        if (!cancel) setMidiCheck("error")
+      })
+    return () => {
+      cancel = true
+    }
+  }, [pattern])
+
   useEffect(() => {
     engineRef.current?.stop()
   }, [selectedId])
 
-  useEffect(() => {
-    return () => engineRef.current?.stop()
-  }, [])
+  useEffect(() => () => engineRef.current?.stop(), [])
 
   useEffect(() => {
     let frame = 0
@@ -181,19 +224,32 @@ export default function App() {
     return () => cancelAnimationFrame(frame)
   }, [playing])
 
+  const modes = useMemo(() => [...new Set(collection?.patterns.map((item) => item.collection) ?? [])], [collection])
+
   const visible = useMemo(() => {
     if (!collection) return []
-    if (group === "all") return collection.patterns
-    return collection.patterns.filter((pattern) => pattern.group === group)
-  }, [collection, group])
+    const needle = query.trim().toLowerCase()
+    return collection.patterns.filter((item) => {
+      if (group !== "all" && item.group !== group) return false
+      if (bars !== "any" && String(item.bars) !== bars) return false
+      if (modeName !== "any" && item.collection !== modeName) return false
+      if (borrowedOnly && item.borrowed === "none") return false
+      if (!needle) return true
+      return [item.id, item.name, item.tonic, item.collection, item.summary, item.group, String(item.bpm)].join(" ").toLowerCase().includes(needle)
+    })
+  }, [collection, group, bars, modeName, borrowedOnly, query])
 
-  const pattern = collection?.patterns.find((item) => item.id === selectedId) ?? visible[0]
+  function select(id: string, scroll = false) {
+    setSelectedId(id)
+    history.replaceState(null, "", `#${id}`)
+    if (scroll) document.getElementById("lab")?.scrollIntoView({ block: "start" })
+  }
 
   function step(direction: number) {
     if (!pattern || visible.length === 0) return
-    const index = visible.findIndex((item) => item.id === pattern.id)
+    const index = Math.max(0, visible.findIndex((item) => item.id === pattern.id))
     const next = visible[(index + direction + visible.length) % visible.length]
-    setSelectedId(next.id)
+    select(next.id)
   }
 
   async function toggle() {
@@ -204,7 +260,7 @@ export default function App() {
         bpm: pattern.bpm,
         loopTicks: pattern.loopTicks,
         notes: pattern.notes,
-        sound: pattern.sound,
+        sound: soundOverride || pattern.sound,
         treatment: pattern.treatment,
       })
     } catch (reason) {
@@ -214,11 +270,10 @@ export default function App() {
 
   const actions = useRef({ toggle, step })
   actions.current = { toggle, step }
-
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
       const target = event.target
-      if (target instanceof HTMLElement && (target.tagName === "INPUT" || target.tagName === "TEXTAREA")) return
+      if (target instanceof HTMLElement && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.tagName === "SELECT")) return
       if (event.code === "Space") {
         event.preventDefault()
         void actions.current.toggle()
@@ -234,232 +289,211 @@ export default function App() {
     return () => window.removeEventListener("keydown", onKey)
   }, [])
 
-  function chooseGroup(name: string) {
-    setGroup(name)
-    if (!collection) return
-    const pool = name === "all" ? collection.patterns : collection.patterns.filter((item) => item.group === name)
-    if (!pool.some((item) => item.id === selectedId) && pool[0]) setSelectedId(pool[0].id)
-  }
-
   if (error) {
     return (
       <main className="status shell">
-        <div>
-          <h1>Lumen Drift</h1>
-          <p>{error}</p>
-        </div>
+        <h1>Lumen Drift</h1>
+        <p>{error}</p>
+        <p>
+          <a href={asset("lumen-drift-collection.zip")}>Download the zip without the player</a>
+        </p>
       </main>
     )
   }
-  if (!collection || !pattern) {
+  if (!collection || !pattern || !report) {
     return (
       <main className="status shell">
-        <p>Loading the fifty progressions.</p>
+        <p>Loading the fifty progressions and the validation report.</p>
       </main>
     )
   }
 
   const event = currentEvent(pattern, tick)
-  const outside = pattern.outside.length ? pattern.outside.join(", ") : "none"
+  const midiLabel =
+    midiCheck === "match"
+      ? `Parsed ${pattern.filename}: ${pattern.notes.length} notes match the table.`
+      : midiCheck === "mismatch"
+        ? "The MIDI file does not match the note table."
+        : midiCheck === "error"
+          ? "The MIDI file could not be parsed."
+          : "Checking the MIDI file against the note table."
 
   return (
-    <>
-      <a className="skip" href="#stage">
-        Skip to the player
+    <LabProvider value={{ collection, pattern, select, playing, toggle, tick, report, midiCheck, soundOverride, setSoundOverride }}>
+      <a className="skip" href="#lab">
+        Skip to the lab
       </a>
-      <header className="top">
-        <div className="shell top-row">
-          <a className="brand" href="#top">
-            Lumen Drift
-            <small>50 nocturnal pad progressions</small>
-          </a>
-          <button className="mode-toggle" type="button" aria-pressed={mode === "dark"} onClick={() => setMode(mode === "dark" ? "light" : "dark")}>
-            {mode === "dark" ? "Dark" : "Light"}
-          </button>
-        </div>
-        <div className="shell theme-row" role="toolbar" aria-label="Themes">
-          {THEMES.map(([id, label]) => (
-            <button key={id} className="chip" type="button" aria-pressed={theme === id} onClick={() => setTheme(id)}>
-              {label}
-            </button>
-          ))}
-        </div>
-      </header>
-
+      <SiteNav />
+      <ThemeBar theme={theme} mode={mode} setTheme={setTheme} setMode={setMode} />
       <main id="top">
-        <section className="shell hero">
-          <div className="hero-copy">
-            <p className="meta-line">Kinetic Gain · MIDI library · listening room</p>
-            <h1>Pads that leave room for the rest of the song.</h1>
-            <p className="dek">
-              Fifty original progressions for nocturnal electronic arrangements. Sustained harmony, small inner movements, and space under the chord for a bass and above it for a melody.
-            </p>
-            <p className="meta-line">Reference climate, not templates: Brian Eno, Jon Hopkins, Boards of Canada, Tycho.</p>
-          </div>
-          <figure className="hero-frame">
-            <img src={asset("images/hero-lumen-drift.jpg")} alt="A dark room at night, with a sofa, a plant, and a synthesizer facing a wide window and an amber line on the horizon." />
-            <figcaption>Listening room, not a replica of a record.</figcaption>
-          </figure>
-        </section>
-
-        <section className="shell" aria-label="Groups">
-          <div className="transport">
-            <button className="chip" type="button" aria-pressed={group === "all"} onClick={() => chooseGroup("all")}>
-              All fifty
+        <Hero />
+        <Marquee />
+        <section className="shell section" id="lab">
+          <p className="kicker">01 · Pad lab</p>
+          <h2>Audition all fifty. The roll is the file.</h2>
+          <p className="dek">
+            The player fetches the .mid, parses it in the browser, and checks every note against the table. The synth is only a preview. Space plays. Arrows move through the filtered list.
+          </p>
+          <div className="filters">
+            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search name, tonic, chord" aria-label="Search progressions" />
+            <select value={bars} onChange={(event) => setBars(event.target.value)} aria-label="Loop length">
+              <option value="any">Any length</option>
+              <option value="4">4 bars</option>
+              <option value="8">8 bars</option>
+              <option value="16">16 bars</option>
+            </select>
+            <select value={modeName} onChange={(event) => setModeName(event.target.value)} aria-label="Pitch collection">
+              <option value="any">Any collection</option>
+              {modes.map((name) => (
+                <option key={name} value={name}>
+                  {name}
+                </option>
+              ))}
+            </select>
+            <button className="chip" type="button" aria-pressed={borrowedOnly} onClick={() => setBorrowedOnly((value) => !value)}>
+              Borrowed only
             </button>
+            <span className="meta-line">
+              {visible.length} of {collection.patterns.length}
+            </span>
           </div>
           <div className="groups">
-          {GROUP_ART.map((item) => (
-            <button key={item.name} className="group-card" type="button" aria-pressed={group === item.name} onClick={() => chooseGroup(item.name)}>
-              <img src={asset(item.image)} alt={item.alt} />
-              <div>
-                <strong>{item.name}</strong>
-                <span>{collection.groups.find((entry) => entry.name === item.name)?.blurb}</span>
-              </div>
+            <button className="chip" type="button" aria-pressed={group === "all"} onClick={() => setGroup("all")}>
+              All
             </button>
-          ))}
-          </div>
-        </section>
-
-        <section className="shell stage" id="stage">
-          <div className="panel list" aria-label="Progressions">
-            {visible.map((item) => (
-              <button key={item.id} className="piece" type="button" aria-current={item.id === pattern.id} onClick={() => setSelectedId(item.id)}>
-                <b>{item.id}</b>
-                {item.name}
-                <small>
-                  {item.tonic} {item.collection} · {item.bpm} bpm · {item.bars} bars
-                </small>
-              </button>
-            ))}
-          </div>
-
-          <article className="panel">
-            <p className="kicker">
-              {pattern.id} · {pattern.group}
-            </p>
-            <h2>
-              {pattern.name}
-            </h2>
-            <p>{pattern.idea}</p>
-            <div className="transport">
-              <button className="play" type="button" aria-pressed={playing} onClick={() => void toggle()}>
-                {playing ? "Stop" : "Play"}
-              </button>
-              <span className="meta-line">
-                {pattern.bpm} bpm locked · {pattern.bars} bars · {positionLabel(tick)} · {event.symbol}
-              </span>
-              <a className="ghost" href={asset(`midi/${pattern.filename}`)} download>
-                MIDI
-              </a>
-              <a className="ghost" href={asset("lumen-drift-collection.zip")} download>
-                All 50 zip
-              </a>
-            </div>
-            <p className="warn">Space plays. Left and right arrows change progression. The browser synth is a preview. It is not printed in the MIDI.</p>
-            {audioError ? <p className="warn">{audioError}</p> : null}
-
-            <p className="kicker">MIDI piano roll</p>
-            <PianoRoll pattern={pattern} tick={tick} />
-
-            <p className="kicker">Harmonic rhythm</p>
-            <HarmonyDiagram pattern={pattern} />
-            <p className="warn">{pattern.summary}</p>
-
-            <dl className="facts">
-              <div>
-                <dt>Tonal center and collection</dt>
-                <dd>
-                  {pattern.tonic} {pattern.collection}. Pitch classes, C = 0: {pattern.pcs.join(" ")}.
-                </dd>
-              </div>
-              <div>
-                <dt>Outside the collection</dt>
-                <dd>
-                  {outside}. Borrowed: {pattern.borrowed}.
-                </dd>
-              </div>
-              <div>
-                <dt>Voicing</dt>
-                <dd>{pattern.voicing}</dd>
-              </div>
-              <div>
-                <dt>Loop seam</dt>
-                <dd>{pattern.transition}</dd>
-              </div>
-              <div>
-                <dt>Playback suggestion, not MIDI</dt>
-                <dd>
-                  {pattern.sound}. Treatment: {pattern.treatment}. Tempo meta: {pattern.mpqn} µs per quarter.
-                </dd>
-              </div>
-            </dl>
-
-            <ol className="chords">
-              {pattern.events.map((item) => (
-                <li key={item.number}>
-                  <strong>
-                    {item.number}. {item.symbol} · {item.roman}
-                  </strong>
-                  <div>{item.spelling.join(" ")}</div>
-                  <div className="warn">{item.transition}</div>
-                </li>
-              ))}
-            </ol>
-          </article>
-        </section>
-
-        <section className="shell map" aria-label="Collection mindmap">
-          <p className="map-climate">Reference climate, not templates. Brian Eno. Jon Hopkins. Boards of Canada. Tycho. None of these loops is labeled as their work.</p>
-          <div className="hub">Lumen Drift</div>
-          <div className="map-board">
             {GROUP_ART.map((item) => (
-              <div className="map-col" key={item.name}>
-                <h3>{item.name}</h3>
-                {collection.patterns
-                  .filter((entry) => entry.group === item.name)
-                  .map((entry) => (
-                    <button key={entry.id} type="button" aria-current={entry.id === pattern.id} onClick={() => setSelectedId(entry.id)}>
-                      <span>{entry.id}</span>
-                      {entry.name}
-                    </button>
-                  ))}
-              </div>
+              <button key={item.name} className="group-card" type="button" aria-pressed={group === item.name} onClick={() => setGroup(item.name)}>
+                <img src={asset(item.image)} alt={item.alt} />
+                <div>
+                  <strong>{item.name}</strong>
+                  <span>{collection.groups.find((entry) => entry.name === item.name)?.blurb}</span>
+                </div>
+              </button>
             ))}
           </div>
-        </section>
-
-        <section className="shell essay">
-          <div>
-            <h2>What you are holding</h2>
-            <ol className="points">
-              <li>Fifty loopable pad progressions, five groups of ten.</li>
-              <li>For producers who want a voiced pad, not a list of chord symbols.</li>
-              <li>Common tones are held. The low end stays sparse. The top usually stays open.</li>
-              <li>Groups: Suspended Light, Emotional Currents, Faded Memory, Open Horizons, Nocturnal Bloom.</li>
-              <li>Find a loop by group, tonic, or tempo.</li>
-              <li>Play it, read the voicing, then download the MIDI.</li>
-              <li>The download is the action. There is no account.</li>
-              <li>This release is a free portfolio library. A paid sound pack does not exist here.</li>
-              <li>The listening room is the public page. The source of the files is the repository.</li>
-              <li>Add a progression only when it passes the same duplicate and voicing checks.</li>
-            </ol>
-            <p className="warn">
-              A DAW will not infer the loop length. Each file declares 4, 8, or 16 bars in the index. Structural MIDI looping is not a promise of a seamless audio loop: release tails from the end can overlap the start.
-            </p>
+          <div className="stage">
+            <div className="panel list" aria-label="Progressions">
+              {visible.map((item) => (
+                <button key={item.id} className="piece" type="button" aria-current={item.id === pattern.id} onClick={() => select(item.id)}>
+                  <b>{item.id}</b>
+                  {item.name}
+                  <small>
+                    {item.tonic} {item.collection} · {item.bpm} bpm · {item.bars} bars · {item.events.length} events
+                  </small>
+                </button>
+              ))}
+              {visible.length === 0 && <p>No progression matches those filters.</p>}
+            </div>
+            <article className="panel">
+              <p className="kicker">
+                {pattern.id} · {pattern.group}
+              </p>
+              <h2>{pattern.name}</h2>
+              <p>{pattern.idea}</p>
+              <div className="transport">
+                <button className="chip" type="button" onClick={() => step(-1)} aria-label="Previous progression">
+                  Previous
+                </button>
+                <button className="play" type="button" aria-pressed={playing} onClick={() => void toggle()}>
+                  {playing ? "Stop" : "Play"}
+                </button>
+                <button className="chip" type="button" onClick={() => step(1)} aria-label="Next progression">
+                  Next
+                </button>
+                <span className="meta-line">
+                  {pattern.bpm} bpm locked · {positionLabel(tick)} · {event.symbol}
+                </span>
+                <a className="ghost" href={asset(`midi/${pattern.filename}`)} download>
+                  MIDI
+                </a>
+              </div>
+              <p className={midiCheck === "match" ? "ok" : "warn"}>{midiLabel}</p>
+              {audioError ? <p className="warn">{audioError}</p> : null}
+              <p className="kicker">MIDI piano roll</p>
+              <PianoRoll pattern={pattern} tick={tick} />
+              <p className="kicker">Common tones between events</p>
+              <HarmonyDiagram pattern={pattern} />
+              <p className="warn">{pattern.summary}</p>
+              <dl className="facts">
+                <div>
+                  <dt>Tonal center</dt>
+                  <dd>
+                    {pattern.tonic} {pattern.collection}. Pitch classes, C = 0: {pattern.pcs.join(" ")}.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Outside / borrowed</dt>
+                  <dd>
+                    {pattern.outside.length ? pattern.outside.join(", ") : "none"}. {pattern.borrowed}.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Voicing</dt>
+                  <dd>{pattern.voicing}</dd>
+                </div>
+                <div>
+                  <dt>Loop seam</dt>
+                  <dd>{pattern.transition}</dd>
+                </div>
+                <div>
+                  <dt>Suggestion, not in the file</dt>
+                  <dd>
+                    {pattern.sound}. Treatment: {pattern.treatment}. Tempo meta {pattern.mpqn} µs per quarter.
+                    {soundOverride ? ` Preview patch override: ${soundOverride}.` : ""}
+                  </dd>
+                </div>
+              </dl>
+              <button className="chip" type="button" aria-pressed={showNotes} onClick={() => setShowNotes((value) => !value)}>
+                {showNotes ? "Hide note table" : "Show note table"}
+              </button>
+              {showNotes && (
+                <table className="sheet">
+                  <thead>
+                    <tr>
+                      <th>Note</th>
+                      <th>MIDI</th>
+                      <th>Start</th>
+                      <th>Duration</th>
+                      <th>Velocity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {pattern.notes.map((note) => (
+                      <tr key={`${note.pitch}-${note.start}`}>
+                        <td>{note.name}</td>
+                        <td>{note.pitch}</td>
+                        <td>{note.start}</td>
+                        <td>{note.duration}</td>
+                        <td>{note.velocity}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+              <ol className="chords">
+                {pattern.events.map((item) => (
+                  <li key={item.number}>
+                    <strong>
+                      {item.number}. {item.symbol} · {item.roman}
+                    </strong>
+                    <div>{item.spelling.join(" ")}</div>
+                    <div className="warn">{item.transition}</div>
+                  </li>
+                ))}
+              </ol>
+            </article>
           </div>
-          <figure className="hero-frame">
-            <img src={asset("images/medium-hero-lumen-drift.jpg")} alt="A dark room with a piano and a cabinet, looking through a window onto fog and a warm horizon above a tree line." />
-            <figcaption>Field notes live in the Medium draft in the repository.</figcaption>
-          </figure>
         </section>
+        <HarmonyMap />
+        <Mindmap />
+        <SoundDesign />
+        <Pipeline />
+        <ValidationPanel />
+        <DropBand />
+        <Brief />
+        <ArticleTeaser />
       </main>
-      <footer className="shell foot">
-        <p>
-          Lumen Drift. Kinetic Gain. Pitch, timing, and velocity are in the MIDI. Texture is the instrument you load.{" "}
-          <a href="https://github.com/mizcausevic-dev/lumen-drift/blob/main/article/lumen-drift-medium-Cursor.md">Field notes</a>
-        </p>
-      </footer>
-    </>
+      <SiteFooter />
+    </LabProvider>
   )
 }

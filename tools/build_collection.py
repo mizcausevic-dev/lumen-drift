@@ -1243,6 +1243,11 @@ def main() -> None:
     payload = payload_sha256(midi_dir, data_dir)
     report = render_report(built_all, failures, payload)
     (ROOT / "VALIDATION-REPORT-Cursor.md").write_text(report, encoding="utf-8")
+    document = validation_document(built_all, failures, payload)
+    (data_dir / "validation.json").write_text(json.dumps(document, indent=2) + "\n", encoding="utf-8")
+    for name in ("index.csv", "notes.csv", "harmony.csv", "validation.json"):
+        shutil.copy2(data_dir / name, web_data / name)
+    shutil.copy2(ROOT / "VALIDATION-REPORT-Cursor.md", ROOT / "web" / "public" / "VALIDATION-REPORT-Cursor.md")
     if failures:
         print("\n".join(failures))
         raise SystemExit(f"{len(failures)} validation failures")
@@ -1406,6 +1411,77 @@ def payload_sha256(midi_dir: Path, data_dir: Path) -> str:
         digest.update(b"\0")
         digest.update((data_dir / name).read_bytes())
     return digest.hexdigest()
+
+
+def validation_document(built_all: list[Built], failures: list[str], payload_hash: str) -> dict:
+    """Structured report the site renders. Same facts as the Markdown report."""
+    romans: dict[tuple[str, ...], list[str]] = defaultdict(list)
+    rhythms: dict[tuple[int, ...], list[str]] = defaultdict(list)
+    for built in built_all:
+        romans[tuple(event.roman for event in built.events)].append(built.pattern["id"])
+        rhythms[tuple(event.dur for event in built.events)].append(built.pattern["id"])
+    shared_romans = [
+        {"ids": ids, "romans": list(key)}
+        for key, ids in romans.items()
+        if len(ids) > 1
+    ]
+    shared_rhythms = [
+        {"ids": ids, "ticks": list(key)}
+        for key, ids in rhythms.items()
+        if len(ids) > 1
+    ]
+    weak = []
+    for built in built_all:
+        holds, _boundaries = boundary_holds(built)
+        if holds == 0:
+            weak.append(built.pattern["id"])
+    checks = [
+        ("files", "File count and groups", "Exactly 50 MIDI files, 10 in each of the five groups, IDs 001-050."),
+        ("format", "Format and resolution", "Each file parses as Standard MIDI Format 0, one track, 480 ticks per quarter."),
+        ("meta", "Tempo and time signature", "Track name, tempo, and 4/4 time signature are at tick 0. No program change, pitch bend, or controller."),
+        ("pairing", "Note pairing", "Every note-on has one note-off. No unmatched note-off. Note-offs are ordered before note-ons at the same tick."),
+        ("eot", "End of track", "End of track is the only terminal meta, at the declared loop length, after any note-offs on that tick."),
+        ("range", "Pitch, velocity, and bounds", "Pitches are inside 36-96, velocities are 1-127, durations are positive, and no note crosses the loop."),
+        ("polyphony", "Overlap and polyphony", "The same MIDI pitch is never active twice. Active notes never exceed 12."),
+        ("csv", "Note CSV equality", "Parsed notes match the note CSV in pitch, tick, duration, and velocity."),
+        ("beats", "Beat rounding", "Beat columns match ticks / 480 within 0.0000000005 beats."),
+        ("tempo", "Tempo encoding", "Tempo meta matches the index and the half-up rounding of 60,000,000 / BPM. Every integer from 70 through 115 round-trips."),
+        ("harmony", "Harmonic partitions", "Each loop has 2 to 8 harmonic events whose tick intervals partition the loop."),
+        ("collection", "Pitch collections", "Sounding pitch classes outside the named collection match the index. Aeolian is the only name used for natural minor."),
+        ("symbols", "Chord symbols", "Chord-symbol intervals are present in the intended voicing. Omissions are written into the symbol."),
+        ("romans", "Roman numerals", "Roman numeral case matches chord quality, measured from the parallel major."),
+        ("duplicates", "Duplicate detection", "No exact copy, no constant transposition, and no unchanged shorter loop repeated inside a longer file."),
+    ]
+    status = "pass" if not failures else "fail"
+    return {
+        "title": "Lumen Drift validation",
+        "result": status,
+        "payload_sha256": payload_hash,
+        "validator": "tools/build_collection.py",
+        "summary": {
+            "midi_files": len(built_all),
+            "note_events": sum(len(built.notes) for built in built_all),
+            "harmonic_events": sum(len(built.events) for built in built_all),
+            "checks": len(checks),
+            "passed": 0 if failures else len(checks),
+            "failed": len(failures),
+        },
+        "checks": [
+            {"id": ident, "name": name, "status": status, "detail": detail, "problems": failures if status == "fail" else []}
+            for ident, name, detail in checks
+        ],
+        "shared_roman_sequences": shared_romans,
+        "shared_harmonic_rhythms": shared_rhythms,
+        "loops_without_a_common_tone_boundary": weak,
+        "limitations": [
+            "Audio was not rendered.",
+            "The loops were not auditioned. The browser synth is a preview, not a hearing test.",
+            "Whether a borrowed chord feels nostalgic is a reading of the voicing ledger, not a scored classifier.",
+            "A DAW was not asked to cycle the files. Loop length is in the index because a DAW will not infer it.",
+            "The digest covers the MIDI files and the three CSV tables. It does not cover this report or the zip.",
+        ],
+        "reproduce": "python3 tools/build_collection.py",
+    }
 
 
 def render_report(built_all: list[Built], failures: list[str], payload_hash: str) -> str:

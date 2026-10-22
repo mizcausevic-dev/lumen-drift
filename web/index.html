@@ -13,6 +13,7 @@
     </script>
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07060f" />
     <title>Lumen Drift: 50 Nocturnal MIDI Pad Progressions</title>
     <meta
       name="description"
@@ -43,22 +44,46 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Dataset",
-        "name": "Lumen Drift",
-        "description": "Fifty original MIDI pad progressions in five groups, with harmonic documentation and a browser listening room.",
-        "creator": {
-          "@type": "Organization",
-          "name": "Kinetic Gain",
-          "url": "https://kineticgain.com"
-        },
-        "keywords": ["MIDI", "pad progressions", "synthwave", "darkwave", "ambient", "electronic music"],
-        "isAccessibleForFree": true,
-        "url": "https://mizcausevic-dev.github.io/lumen-drift/"
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "name": "Lumen Drift",
+            "url": "https://mizcausevic-dev.github.io/lumen-drift/",
+            "description": "Fifty original MIDI pad progressions and a browser listening room."
+          },
+          {
+            "@type": "WebPage",
+            "name": "Lumen Drift listening room",
+            "url": "https://mizcausevic-dev.github.io/lumen-drift/",
+            "isPartOf": { "@id": "https://mizcausevic-dev.github.io/lumen-drift/" }
+          },
+          {
+            "@type": "Dataset",
+            "name": "Lumen Drift",
+            "description": "Fifty original MIDI pad progressions in five groups, with harmonic documentation and a browser listening room.",
+            "creator": {
+              "@type": "Organization",
+              "name": "Kinetic Gain",
+              "url": "https://kineticgain.com"
+            },
+            "keywords": ["MIDI", "pad progressions", "synthwave", "darkwave", "ambient", "electronic music"],
+            "isAccessibleForFree": true,
+            "url": "https://mizcausevic-dev.github.io/lumen-drift/",
+            "distribution": {
+              "@type": "DataDownload",
+              "encodingFormat": "application/zip",
+              "contentUrl": "https://mizcausevic-dev.github.io/lumen-drift/lumen-drift-collection.zip"
+            }
+          }
+        ]
       }
     </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <p>Lumen Drift is fifty MIDI pad progressions. JavaScript draws the listening room. The files are still available: <a href="./lumen-drift-collection.zip">download the zip</a>.</p>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
