@@ -1,0 +1,239 @@
+pattern_id,event_number,start_tick,duration_ticks,start_beat,duration_beats,chord_symbol,roman_numeral,intended_pitches,voicing_and_transition
+001,1,0,3840,0.000000000,8.000000000,Dm6,i6,"[62,65,71,81]",Dorian sixth instead of a seventh. Staggered entrances: B4 +240 ticks. No outgoing transition tones.
+001,2,3840,4800,8.000000000,10.000000000,Gadd9,IVadd9,"[62,67,71,81]","F rises to G. A, already present, is heard as the ninth. Staggered entrances: G4 +240 ticks. No outgoing transition tones."
+001,3,8640,3840,18.000000000,8.000000000,Cmaj9(no3),bVIImaj9(no3),"[62,67,71,84]",Third omitted. C enters against a held G and B shell. Staggered entrances: C6 +240 ticks. No outgoing transition tones.
+001,4,12480,2880,26.000000000,6.000000000,Dm11(no3),i11(no3),"[62,67,76,81,84]",Third omitted. Ninth and eleventh replace the bVII root. Staggered entrances: A5 +240 ticks. No outgoing transition tones.
+002,1,0,11520,0.000000000,24.000000000,Am(add9),i(add9),"[57,60,64,71]","Long tonic. Ninth, no seventh. Staggered entrances: B4 +360 ticks. No outgoing transition tones."
+002,2,11520,10560,24.000000000,22.000000000,Fmaj7,bVImaj7,"[57,60,64,77]",F takes the place of B. Staggered entrances: F5 +360 ticks. Outgoing transition tones still sounding in this event: B4.
+002,3,22080,8640,46.000000000,18.000000000,Am7,i7,"[57,60,64,79]","G takes the place of F. One chord, three temperatures. Staggered entrances: G5 +360 ticks. No outgoing transition tones."
+003,1,0,2880,0.000000000,6.000000000,Fsus2,isus2,"[53,60,67,77]",No third. G is the ninth above the fifth. Staggered entrances: G4 +240 ticks. No outgoing transition tones.
+003,2,2880,2880,6.000000000,6.000000000,Fm(add9),i(add9),"[53,60,67,80]",Ab arrives under the held fifth and ninth. Staggered entrances: Ab5 +240 ticks. No outgoing transition tones.
+003,3,5760,3840,12.000000000,8.000000000,Bbadd9,IVadd9,"[53,60,70,74]","Dorian major IV. No seventh, so A, which is outside the mode, stays out. Staggered entrances: D5 +240 ticks. No outgoing transition tones."
+003,4,9600,2880,20.000000000,6.000000000,Ebmaj7,bVIImaj7,"[55,63,70,74]","D, the Dorian sixth, is the major seventh of Eb. Staggered entrances: Eb4 +240 ticks. No outgoing transition tones."
+003,5,12480,2880,26.000000000,6.000000000,Fm7,i7,"[56,60,63,77]",The ninth drops away so the opening sus2 still has a role. Staggered entrances: F5 +240 ticks. No outgoing transition tones.
+004,1,0,4320,0.000000000,9.000000000,Bb6/9,I6/9,"[55,60,70,74,77]",Sixth and ninth. No seventh. Staggered entrances: F5 +240 ticks. No outgoing transition tones.
+004,2,4320,3360,9.000000000,7.000000000,Ebmaj9,IVmaj9,"[55,63,70,74,77]","IV opens. Ninth F, major seventh D. Staggered entrances: Eb4 +240 ticks. No outgoing transition tones."
+004,3,7680,3840,16.000000000,8.000000000,Cm7,ii7,"[55,60,63,70]","Minor ii. Eb, G, and Bb can remain. Staggered entrances: C4 +240 ticks. No outgoing transition tones."
+004,4,11520,3840,24.000000000,8.000000000,Abmaj7,bVIImaj7,"[55,60,63,68]","Mixolydian bVII. G, its major seventh, is the major sixth of Bb and is in the mode. Staggered entrances: Ab4 +240 ticks. No outgoing transition tones."
+005,1,0,4800,0.000000000,10.000000000,Em,i,"[52,55,64,71]",Plain minor triad before the Phrygian degree. No outgoing transition tones.
+005,2,4800,2880,10.000000000,6.000000000,Esus4(b9),isus4(b9),"[52,57,65,71]","No third. b9 is F, spaced at least a ninth from E. The fourth replaces the third. No outgoing transition tones."
+005,3,7680,3840,16.000000000,8.000000000,Am(add9),iv(add9),"[52,57,60,71]","F leaves. B, the ninth of iv, is the color that remains available. Outgoing transition tones still sounding in this event: F4."
+005,4,11520,3840,24.000000000,8.000000000,Dm9,bvii9,"[52,57,60,74,77]",Minor nine on bVII. E in this chord is the ninth and the returning tonic. Outgoing transition tones still sounding in this event: B4.
+006,1,0,2400,0.000000000,5.000000000,Cmaj7,Imaj7,"[60,64,71,79]","Root, third, fifth, major seventh. No outgoing transition tones."
+006,2,2400,1920,5.000000000,4.000000000,Am7,vi7,"[60,64,69,79]",G moves to A. No outgoing transition tones.
+006,3,4320,1920,9.000000000,4.000000000,Fmaj7(no5),IVmaj7(no5),"[53,64,69,77]",Fifth omitted so C and E can hold without crowding. No outgoing transition tones.
+006,4,6240,1440,13.000000000,3.000000000,G6/9,V6/9,"[57,64,71,74,79]",Dominant color. No leading-tone seventh. No outgoing transition tones.
+007,1,0,5760,0.000000000,12.000000000,Bm(add9),i(add9),"[59,62,73,78]","Ninth, no seventh. Thin on purpose. No outgoing transition tones."
+007,2,5760,4800,12.000000000,10.000000000,Gmaj7,bVImaj7,"[59,62,67,78]","B, D, and F# belong to both i and bVI. Staggered entrances: G4 +360 ticks. Outgoing transition tones still sounding in this event: C#5."
+007,3,10560,4800,22.000000000,10.000000000,Em7,iv7,"[59,62,67,76]",Subdominant minor. Staggered entrances: E5 +360 ticks. No outgoing transition tones.
+007,4,15360,4800,32.000000000,10.000000000,A7sus4,bVII7sus4,"[57,62,67,76]","No third. D, the fourth, is the fifth of the tonic. Staggered entrances: A3 +360 ticks. No outgoing transition tones."
+007,5,20160,4800,42.000000000,10.000000000,Dadd9,bIIIadd9,"[57,62,66,76]",Major bIII. Ninth E points back toward iv. Staggered entrances: F#4 +360 ticks. No outgoing transition tones.
+007,6,24960,5760,52.000000000,12.000000000,Bm9,i9,"[59,62,69,73,78]","The seventh A is the new tone. The add9 has grown into i9. Staggered entrances: C#5 +180 ticks, F#5 +360 ticks. Outgoing transition tones still sounding in this event: F#4."
+008,1,0,2880,0.000000000,6.000000000,G6/9,I6/9,"[55,59,64,69,74]",Sixth and ninth. The b7 is saved for the next chord. No outgoing transition tones.
+008,2,2880,2880,6.000000000,6.000000000,Fmaj9,bVIImaj9,"[55,60,64,69,77]",G can sound as the ninth of F. No outgoing transition tones.
+008,3,5760,1920,12.000000000,4.000000000,Cadd9,IVadd9,"[55,60,64,74]","Shorter IV. A turn, not a new scene. No outgoing transition tones."
+009,1,0,4800,0.000000000,10.000000000,"Ebmaj7(#11,no5)","Imaj7(#11,no5)","[55,63,69,74]",Fifth omitted so A does not sit a semitone from Bb. Staggered entrances: A4 +240 ticks. No outgoing transition tones.
+009,2,4800,2880,10.000000000,6.000000000,Bb6/9,V6/9,"[55,60,70,74,77]",No seventh. The #11 can leave. Staggered entrances: F5 +240 ticks. No outgoing transition tones.
+009,3,7680,4320,16.000000000,9.000000000,F6/9,II6/9,"[55,60,69,74,77]","Lydian II is major. Sixth and ninth, all inside the collection. Staggered entrances: A4 +240 ticks. No outgoing transition tones."
+009,4,12000,3360,25.000000000,7.000000000,Ebmaj9,Imaj9,"[55,63,70,74,77]",The #11 rests. Major nine only. Staggered entrances: Bb4 +240 ticks. No outgoing transition tones.
+010,1,0,2880,0.000000000,6.000000000,F#m7,i7,"[54,57,64,73]",Stable minor seventh. No outgoing transition tones.
+010,2,2880,2400,6.000000000,5.000000000,Bsus4,IVsus4,"[54,59,64,71]","No third. E, the seventh of i, becomes the fourth. Staggered entrances: B3 +200 ticks. No outgoing transition tones."
+010,3,5280,2400,11.000000000,5.000000000,B,IV,"[54,59,63,71]",The fourth resolves to D#. Dorian major IV. No outgoing transition tones.
+010,4,7680,2880,16.000000000,6.000000000,Emaj9,bVIImaj9,"[54,59,63,68,76]","D#, the Dorian sixth, is the major seventh of E. Staggered entrances: G#4 +200 ticks. No outgoing transition tones."
+010,5,10560,2400,22.000000000,5.000000000,C#m7,v7,"[59,64,68,73]","Minor v, softer than a dominant. Staggered entrances: E4 +200 ticks. No outgoing transition tones."
+010,6,12960,2400,27.000000000,5.000000000,F#m9,i9,"[54,57,64,68,73]",G# arrives as the ninth. Staggered entrances: F#3 +200 ticks. No outgoing transition tones.
+011,1,0,3840,0.000000000,8.000000000,C#m7,i7,"[56,61,64,71]","Minor seventh, middle register. No outgoing transition tones."
+011,2,3840,2880,8.000000000,6.000000000,Aadd9(no5),bVIadd9(no5),"[57,61,71]","Fifth omitted. G# moves to A on a held C#, E, and B. No outgoing transition tones."
+011,3,6720,3360,14.000000000,7.000000000,F#m7,iv7,"[57,61,66,76]",A becomes the third of iv. Staggered entrances: F#4 +200 ticks. No outgoing transition tones.
+011,4,10080,2880,21.000000000,6.000000000,G#m7,v7,"[56,59,66,75]",Minor v. No leading tone. Staggered entrances: B3 +200 ticks. No outgoing transition tones.
+011,5,12960,2400,27.000000000,5.000000000,C#m9,i9,"[56,61,64,71,75]",The ninth returns the harmony to a fuller tonic. Staggered entrances: E4 +200 ticks. No outgoing transition tones.
+012,1,0,2400,0.000000000,5.000000000,Gm9,i9,"[55,58,62,69,77]",Minor nine as the moving surface. No outgoing transition tones.
+012,2,2400,1920,5.000000000,4.000000000,Gm7(add11),i7(add11),"[55,58,62,72,77]","A moves to C, the eleventh. Same root, new color. No outgoing transition tones."
+012,3,4320,1920,9.000000000,4.000000000,Bbmaj7,bIIImaj7,"[58,62,69,77]",Dorian bIII. A is its major seventh and is inside the mode. No outgoing transition tones.
+012,4,6240,2400,13.000000000,5.000000000,C7sus4,IV7sus4,"[55,58,72,77]","No third. In Dorian, IV7 is a suspended dominant seventh, not a major seventh. No outgoing transition tones."
+012,5,8640,1920,18.000000000,4.000000000,Cadd9,IVadd9,"[55,62,72,76]",F resolves to E. The seventh Bb drops away at the same time. No outgoing transition tones.
+012,6,10560,2400,22.000000000,5.000000000,Ebmaj7,bVImaj7,"[55,58,62,75]",Eb is outside G Dorian. Borrowed from Aeolian. No outgoing transition tones.
+012,7,12960,2400,27.000000000,5.000000000,Gm(add9),i(add9),"[55,58,62,69]",No seventh. Quieter than the opening i9. No outgoing transition tones.
+013,1,0,4320,0.000000000,9.000000000,Em(maj7),i(maj7),"[52,59,67,75]","Minor triad, major seventh. D# is in harmonic minor. Staggered entrances: G4 +240 ticks. No outgoing transition tones."
+013,2,4320,3360,9.000000000,7.000000000,Am9,iv9,"[52,59,67,72,81]",The major seventh leaves. Staggered entrances: A5 +240 ticks. Outgoing transition tones still sounding in this event: D#5.
+013,3,7680,4800,16.000000000,10.000000000,Cmaj7,bVImaj7,"[52,59,67,72]",Long bVI. The ear can still remember D#. Outgoing transition tones still sounding in this event: A5.
+013,4,12480,2880,26.000000000,6.000000000,B7,V7,"[54,59,69,75]","Dominant seventh. D# returns as a chord tone, not a decoration. Staggered entrances: D#5 +240 ticks. Outgoing transition tones still sounding in this event: C5."
+014,1,0,1440,0.000000000,3.000000000,Am7,i7,"[57,64,72,79]","Short, but sustained into the next color. Not a stab. No outgoing transition tones."
+014,2,1440,1440,3.000000000,3.000000000,Am11(no3),i11(no3),"[57,64,71,74,79]",Third omitted. C steps down to B. D is the eleventh. No outgoing transition tones.
+014,3,2880,960,6.000000000,2.000000000,Bm(add11),ii(add11),"[64,71,74,78]",Minor ii with an eleventh. No seventh claimed. No outgoing transition tones.
+014,4,3840,1440,8.000000000,3.000000000,D7,IV7,"[60,69,74,78]","Dorian IV7. C, the b7, is in the mode. No outgoing transition tones."
+014,5,5280,1440,11.000000000,3.000000000,"Cmaj7(#11,no5)","bIIImaj7(#11,no5)","[60,64,71,78]",Fifth omitted. F# is diatonic to A Dorian and is the #11 of C. No outgoing transition tones.
+014,6,6720,960,14.000000000,2.000000000,Am7,i7,"[57,64,72,79]","Arrival, two beats, then the loop restarts the same harmony lower or equal. No outgoing transition tones."
+015,1,0,7680,0.000000000,16.000000000,Bbm9,i9,"[58,61,72,77,80]",Open minor nine. The bottom octave is left for a bass instrument. Staggered entrances: Db4 +360 ticks. No outgoing transition tones.
+015,2,7680,5760,16.000000000,12.000000000,Gbmaj9,bVImaj9,"[58,61,66,77,80]",F and Ab can hold while the root changes. Staggered entrances: Gb4 +360 ticks. Outgoing transition tones still sounding in this event: C5.
+015,3,13440,5760,28.000000000,12.000000000,Ebm7,iv7,"[58,61,66,75]",iv7 under the same Gb-Bb-Db collection. Staggered entrances: Eb5 +360 ticks. Outgoing transition tones still sounding in this event: Ab5.
+015,4,19200,5760,40.000000000,12.000000000,Dbmaj7,bIIImaj7,"[56,61,72,77]","The fault is a register change as much as a root change. Staggered entrances: C5 +180 ticks, F5 +360 ticks. Outgoing transition tones still sounding in this event: Gb4."
+015,5,24960,5760,52.000000000,12.000000000,Ab6/9,bVII6/9,"[58,63,72,77,80]","No seventh. Sixth F and ninth Bb point back at i. Staggered entrances: Eb4 +180 ticks, Ab5 +360 ticks. No outgoing transition tones."
+016,1,0,3360,0.000000000,7.000000000,Dadd9,Iadd9,"[52,57,62,66]",Major add9. The b7 has not entered. Staggered entrances: D4 +200 ticks. No outgoing transition tones.
+016,2,3360,4320,7.000000000,9.000000000,Gmaj7(add13),IVmaj7(add13),"[52,55,62,66,71]",Thirteenth E is present. Ninth and eleventh are not claimed. Staggered entrances: G3 +200 ticks. No outgoing transition tones.
+016,3,7680,3840,16.000000000,8.000000000,Bm7,vi7,"[57,62,66,71]",A soft relative minor. Not a modulation. No outgoing transition tones.
+016,4,11520,3840,24.000000000,8.000000000,Cmaj7(add13),bVIImaj7(add13),"[52,57,67,71,84]",Thirteenth A is the fifth of the tonic. Staggered entrances: G4 +200 ticks. No outgoing transition tones.
+017,1,0,2880,0.000000000,6.000000000,Fm7,i7,"[53,56,63,72]",Sustained. The collisions are harmonic. No outgoing transition tones.
+017,2,2880,2400,6.000000000,5.000000000,Dbmaj7,bVImaj7,"[53,56,61,72]","Eb moves to Db. F, Ab, and C can hold. No outgoing transition tones."
+017,3,5280,2400,11.000000000,5.000000000,Bbm7,iv7,"[53,56,61,70]",Db and F are shared with bVI. No outgoing transition tones.
+017,4,7680,2400,16.000000000,5.000000000,Ebadd9,bVIIadd9,"[53,63,67,70]","Major bVII, ninth F, no seventh claimed. Staggered entrances: Eb4 +200 ticks. No outgoing transition tones."
+017,5,10080,2880,21.000000000,6.000000000,Abmaj7,bIIImaj7,"[56,63,67,72]",G is diatonic. It is the major seventh of Ab. Staggered entrances: Ab3 +200 ticks. No outgoing transition tones.
+017,6,12960,2400,27.000000000,5.000000000,Fm(add9),i(add9),"[53,56,67,72]","G holds and changes function, from major seventh to ninth. No outgoing transition tones."
+018,1,0,3360,0.000000000,7.000000000,Cm9,i9,"[60,63,67,70,74]",Minor nine. No outgoing transition tones.
+018,2,3360,2880,7.000000000,6.000000000,F7(no5),IV7(no5),"[53,63,69,77]","Fifth omitted. Root, third, and seventh only. No outgoing transition tones."
+018,3,6240,2880,13.000000000,6.000000000,Bbmaj7,bVIImaj7,"[58,62,69,77]","A, the third of IV, can become the major seventh of Bb. No outgoing transition tones."
+018,4,9120,3360,19.000000000,7.000000000,Gm7,v7,"[58,62,67,77]",Minor v. No outgoing transition tones.
+018,5,12480,2880,26.000000000,6.000000000,Cm7(add11),i7(add11),"[60,63,67,70,77]","F, the eleventh, can be held from v. The ninth is not in this chord. No outgoing transition tones."
+019,1,0,6720,0.000000000,14.000000000,Ebm9,i9,"[58,63,66,73,77]","Slow minor nine. Late upper entries are stagger, not new chords. Staggered entrances: Db5 +360 ticks. No outgoing transition tones."
+019,2,6720,1920,14.000000000,4.000000000,Ebm7(add11),i7(add11),"[58,63,66,73,80]",F moves to Ab. One inner change. Staggered entrances: Ab5 +360 ticks. Outgoing transition tones still sounding in this event: F5.
+019,3,8640,7680,18.000000000,16.000000000,Ab9,IV9,"[58,63,66,72,80]","Dorian IV is a dominant ninth. Gb is the minor seventh, not G. Staggered entrances: C5 +360 ticks. No outgoing transition tones."
+019,4,16320,6720,34.000000000,14.000000000,Cm7b5,viø7,"[58,63,66,72]","Ab drops out. C, Eb, Gb, and Bb remain. Half-diminished, not a new stack pasted on top. Outgoing transition tones still sounding in this event: Ab5."
+019,5,23040,7680,48.000000000,16.000000000,Ebm(add9),i(add9),"[58,63,66,77]","No seventh. The ø chord's Eb, Gb, and Bb can hold. Staggered entrances: F5 +360 ticks. Outgoing transition tones still sounding in this event: C5."
+020,1,0,960,0.000000000,2.000000000,Bm7,i7,"[59,62,69,78]","Two beats, tied in feeling to the next chord. Not a hit. No outgoing transition tones."
+020,2,960,960,2.000000000,2.000000000,Bm(add9),i(add9),"[59,62,73,78]","A moves to C#. Seventh leaves, ninth enters. No outgoing transition tones."
+020,3,1920,960,4.000000000,2.000000000,Bm6,i6,"[59,62,68,78]","C# moves to G#. Sixth and fifth are spaced, not clustered. No outgoing transition tones."
+020,4,2880,960,6.000000000,2.000000000,Eadd9,IVadd9,"[59,64,68,78]",D moves to E. No outgoing transition tones.
+020,5,3840,960,8.000000000,2.000000000,A6,bVII6,"[57,64,73,78]",bVII with an added sixth. No seventh claimed. No outgoing transition tones.
+020,6,4800,960,10.000000000,2.000000000,F#m9,v9,"[57,64,68,73,78]",G# makes this a minor nine. The low F# reframes the same neighborhood. No outgoing transition tones.
+020,7,5760,960,12.000000000,2.000000000,C#m7,ii7,"[59,64,68,73]","C#, E, and G# can hold from v9. No outgoing transition tones."
+020,8,6720,960,14.000000000,2.000000000,Bm7,i7,"[59,62,69,78]","Tonic seventh again, often higher. The downbeat restarts it. No outgoing transition tones."
+021,1,0,5280,0.000000000,11.000000000,Dm9,i9,"[57,62,65,72,76]",Aeolian minor nine. Staggered entrances: E5 +240 ticks. No outgoing transition tones.
+021,2,5280,2400,11.000000000,5.000000000,Bbmaj7,bVImaj7,"[57,62,65,70]",A short major memory. Staggered entrances: Bb4 +240 ticks. No outgoing transition tones.
+021,3,7680,4320,16.000000000,9.000000000,Gm7,iv7,"[55,62,65,70]",Diatonic iv. Minor again. Staggered entrances: G3 +240 ticks. No outgoing transition tones.
+021,4,12000,3360,25.000000000,7.000000000,Gadd9,IV(add9),"[57,62,67,71]","B natural replaces the minor third's neighborhood. Borrowed Dorian IV. A, the ninth, is diatonic. Staggered entrances: B4 +240 ticks. No outgoing transition tones."
+022,1,0,9600,0.000000000,20.000000000,Gm7,i7,"[55,58,65,74]","No major ninth. Phrygian has Ab, not A. Staggered entrances: Bb3 +180 ticks, F4 +360 ticks. No outgoing transition tones."
+022,2,9600,5760,20.000000000,12.000000000,Abmaj7,bIImaj7,"[55,60,68,75]","Phrygian bII. Ab must not touch G in register. They are consecutive chords, not a cluster. Staggered entrances: Ab4 +180 ticks, Eb5 +360 ticks. Outgoing transition tones still sounding in this event: F4."
+022,3,15360,8640,32.000000000,18.000000000,Dm7b5,vø7,"[53,60,68,74]","Half-diminished v. A dominant that never becomes major. Staggered entrances: F3 +180 ticks, D5 +360 ticks. No outgoing transition tones."
+022,4,24000,6720,50.000000000,14.000000000,Gsus4,isus4,"[55,60,67,74]","No third. C is the fourth. The loop resolves it by returning to minor. Staggered entrances: G3 +180 ticks, G4 +360 ticks. No outgoing transition tones."
+023,1,0,2880,0.000000000,6.000000000,Am(maj7),i(maj7),"[57,68,72,76]",G# belongs to harmonic minor. No outgoing transition tones.
+023,2,2880,4800,6.000000000,10.000000000,Dm9,iv9,"[57,62,65,72,76]",Long iv. The major seventh is gone. Outgoing transition tones still sounding in this event: G#4.
+023,3,7680,1920,16.000000000,4.000000000,Bbmaj7,bIImaj7,"[57,62,65,70]","Bb is outside. Four beats, then gone. Outgoing transition tones still sounding in this event: E5."
+023,4,9600,3840,20.000000000,8.000000000,E7sus4,V7sus4,"[57,62,71,76]","No third, so no leading tone. A is the fourth. G# is withheld. Outgoing transition tones still sounding in this event: F4."
+023,5,13440,1920,28.000000000,4.000000000,Am(add9),i(add9),"[57,60,71,76]",No seventh of either kind. B is the ninth and is inside harmonic minor. G would not be. No outgoing transition tones.
+024,1,0,3840,0.000000000,8.000000000,Cadd9,Iadd9,"[60,64,67,74]",Bright add9 before the b7. Staggered entrances: D5 +240 ticks. No outgoing transition tones.
+024,2,3840,1920,8.000000000,4.000000000,Bbmaj7,bVIImaj7,"[58,65,69,74]",Short Mixolydian bVII. Staggered entrances: A4 +240 ticks. No outgoing transition tones.
+024,3,5760,2880,12.000000000,6.000000000,Fadd9,IVadd9,"[60,65,69,79]","Still major, still diatonic. Staggered entrances: G5 +240 ticks. No outgoing transition tones."
+024,4,8640,2880,18.000000000,6.000000000,Fm6,iv6,"[60,65,68,74]",Ab replaces A. Borrowed Aeolian iv with an added sixth. Ab is the only outside pitch class. Staggered entrances: D5 +240 ticks. No outgoing transition tones.
+024,5,11520,3840,24.000000000,8.000000000,C6,Iadd6,"[60,64,67,81]",Major returns as an added sixth. No leading tone: B is outside Mixolydian. Staggered entrances: A5 +240 ticks. No outgoing transition tones.
+025,1,0,2400,0.000000000,5.000000000,Em9,i9,"[52,55,59,66,74]",Dorian minor nine. Staggered entrances: G3 +200 ticks. No outgoing transition tones.
+025,2,2400,3360,5.000000000,7.000000000,A6,IVadd6,"[52,57,66,73]",Major IV with added sixth F#. The certain version. Staggered entrances: A3 +200 ticks. No outgoing transition tones.
+025,3,5760,2880,12.000000000,6.000000000,Am7,iv7,"[52,57,67,72]",C natural replaces C#. Outside the collection. Borrowed Aeolian iv. Staggered entrances: G4 +200 ticks. No outgoing transition tones.
+025,4,8640,3840,18.000000000,8.000000000,Gmaj7,bIIImaj7,"[54,59,67,74]",bIII is diatonic. C is no longer required. Staggered entrances: B3 +200 ticks. No outgoing transition tones.
+025,5,12480,2880,26.000000000,6.000000000,Em7,i7,"[52,59,67,74]",Home without the ninth. No outgoing transition tones.
+026,1,0,4320,0.000000000,9.000000000,Bbm9,i9,"[58,61,65,72,80]",Dorian minor nine. No outgoing transition tones.
+026,2,4320,2400,9.000000000,5.000000000,Ebadd9,IVadd9,"[58,65,75,79]","Add9, not maj7. D, the major seventh of Eb, is outside Bb Dorian. No outgoing transition tones."
+026,3,6720,3360,14.000000000,7.000000000,Gbmaj7,bVImaj7,"[58,65,73,78]",Gb is outside. Borrowed from Aeolian. No outgoing transition tones.
+026,4,10080,2880,21.000000000,6.000000000,F7sus4,V7sus4,"[58,65,72,75]","No third. A, the major third of V, would also be outside, so it is withheld. No outgoing transition tones."
+026,5,12960,2400,27.000000000,5.000000000,Bbm11(no3),i11(no3),"[58,65,72,75,80]",Third omitted. Eleventh Eb and ninth C. No outgoing transition tones.
+027,1,0,8640,0.000000000,18.000000000,F#m7,i7,"[54,61,69,76]","Minor seventh. The b2 is absent on purpose. Staggered entrances: C#4 +180 ticks, E5 +360 ticks. No outgoing transition tones."
+027,2,8640,6720,18.000000000,14.000000000,Gmaj7,bIImaj7,"[54,59,67,74]","Phrygian bII. G and F# are a semitone apart in pitch class and must not touch in register. Staggered entrances: G4 +180 ticks, D5 +360 ticks. No outgoing transition tones."
+027,3,15360,7680,32.000000000,16.000000000,Dmaj7,bVImaj7,"[54,61,69,74]","bVI major seventh, diatonic. The nostalgia is the major chord in a minor mode, not a quotation. Staggered entrances: C#4 +180 ticks, A4 +360 ticks. No outgoing transition tones."
+027,4,23040,7680,48.000000000,16.000000000,Bm7,iv7,"[54,59,69,74]",iv7 prepares the return. Staggered entrances: B3 +360 ticks. No outgoing transition tones.
+028,1,0,7200,0.000000000,15.000000000,Cm9,i9,"[58,62,67,72,75]",Aeolian minor nine. Staggered entrances: D4 +360 ticks. No outgoing transition tones.
+028,2,7200,4320,15.000000000,9.000000000,Abmaj7,bVImaj7,"[56,67,72,75]",Soft major. Diatonic bVI. Staggered entrances: Ab3 +360 ticks. No outgoing transition tones.
+028,3,11520,5760,24.000000000,12.000000000,Fm7,iv7,"[56,65,72,75]",Diatonic minor iv. Staggered entrances: F4 +360 ticks. No outgoing transition tones.
+028,4,17280,6240,36.000000000,13.000000000,Fadd9,IV(add9),"[57,65,72,79]","A natural is outside C Aeolian. Borrowed Dorian IV. G, the ninth, is diatonic. Staggered entrances: A3 +180 ticks, G5 +360 ticks. No outgoing transition tones."
+028,5,23520,7200,49.000000000,15.000000000,Cm7,i7,"[58,67,72,75]","The ninth and the borrowed third are both gone. Staggered entrances: G4 +180 ticks, Eb5 +360 ticks. No outgoing transition tones."
+029,1,0,1920,0.000000000,4.000000000,Eb6/9,I6/9,"[53,58,63,67,72]",Sixth and ninth. No outgoing transition tones.
+029,2,1920,2880,4.000000000,6.000000000,Cm7,vi7,"[58,63,67,72]",Diatonic vi. No outgoing transition tones.
+029,3,4800,2400,10.000000000,5.000000000,Abmaj7,IVmaj7,"[56,63,67,72]",Major IV. C is the third. No outgoing transition tones.
+029,4,7200,3360,15.000000000,7.000000000,Abm(add9),iv(add9),"[56,59,63,70]",Cb replaces C. Cb is outside Eb Mixolydian. Borrowed Aeolian iv. Ninth Bb is diatonic. Third and ninth are spaced. No outgoing transition tones.
+029,5,10560,2880,22.000000000,6.000000000,Bb7sus4,V7sus4,"[53,56,63,70]",No third. The leading tone D is withheld. No outgoing transition tones.
+029,6,13440,1920,28.000000000,4.000000000,Ebadd9,Iadd9,"[53,58,63,67]","Major again, without the sixth. No outgoing transition tones."
+030,1,0,4800,0.000000000,10.000000000,Bm9,i9,"[54,59,62,69,73]",Aeolian minor nine. Staggered entrances: C#5 +240 ticks. No outgoing transition tones.
+030,2,4800,3840,10.000000000,8.000000000,Em7,iv7,"[52,59,62,67]",Diatonic iv. Staggered entrances: G4 +240 ticks. No outgoing transition tones.
+030,3,8640,3360,18.000000000,7.000000000,Cmaj7,bIImaj7,"[52,59,67,72]","C is outside B Aeolian. Neapolitan. E, G, and B are inside. Staggered entrances: C5 +240 ticks. No outgoing transition tones."
+030,4,12000,3360,25.000000000,7.000000000,Gmaj7,bVImaj7,"[54,59,62,67]",Diatonic bVI. The outsider has left. Staggered entrances: D4 +240 ticks. No outgoing transition tones.
+031,1,0,3840,0.000000000,8.000000000,Gmaj9,Imaj9,"[57,62,67,71,78]","Major nine, open, no added sixth. Staggered entrances: G4 +240 ticks. No outgoing transition tones."
+031,2,3840,3840,8.000000000,8.000000000,Em7,vi7,"[52,62,67,71]",The plain opens into vi. Staggered entrances: E3 +240 ticks. No outgoing transition tones.
+031,3,7680,4800,16.000000000,10.000000000,Cmaj7,IVmaj7,"[52,60,67,71]","IV, long enough for a line to answer. Staggered entrances: C4 +240 ticks. No outgoing transition tones."
+031,4,12480,2880,26.000000000,6.000000000,D6/9,V6/9,"[52,57,62,71,78]","Dominant as light, not as a cadence with a seventh. Staggered entrances: F#5 +240 ticks. No outgoing transition tones."
+032,1,0,1920,0.000000000,4.000000000,Dmaj7,Imaj7,"[61,66,69,74]",Clear major seventh. No outgoing transition tones.
+032,2,1920,1440,4.000000000,3.000000000,Bm7,vi7,"[59,66,69,74]",vi7. No outgoing transition tones.
+032,3,3360,2400,7.000000000,5.000000000,Gmaj9,IVmaj9,"[59,66,69,74,79]",The long chord of the loop. Room here. No outgoing transition tones.
+032,4,5760,1920,12.000000000,4.000000000,A7sus4,V7sus4,"[64,69,74,79]","No third. D is the fourth. C# is left for a melody if wanted. G, the seventh, is diatonic. No outgoing transition tones."
+033,1,0,2880,0.000000000,6.000000000,A6/9,I6/9,"[57,61,66,71,76]",Sixth and ninth. No seventh yet. No outgoing transition tones.
+033,2,2880,1920,6.000000000,4.000000000,Gmaj7,bVIImaj7,"[55,62,66,71]",Mixolydian bVII. No outgoing transition tones.
+033,3,4800,3840,10.000000000,8.000000000,Dadd9,IVadd9,"[57,62,66,76]",The long IV. A line can sit on it. No outgoing transition tones.
+033,4,8640,2880,18.000000000,6.000000000,Em7,v7,"[59,62,67,76]","Minor v, the Mixolydian softening. No outgoing transition tones."
+033,5,11520,3840,24.000000000,8.000000000,A7sus4,I7sus4,"[57,62,67,76]","No third. G is the b7, D is the fourth. No outgoing transition tones."
+034,1,0,5760,0.000000000,12.000000000,Emaj7,Imaj7,"[64,68,71,75]",Long tonic. The sun does not move quickly. Staggered entrances: G#4 +240 ticks. No outgoing transition tones.
+034,2,5760,3840,12.000000000,8.000000000,C#m7,vi7,"[61,64,68,71]",vi7. Staggered entrances: C#4 +240 ticks. No outgoing transition tones.
+034,3,9600,3360,20.000000000,7.000000000,Amaj9,IVmaj9,"[61,64,68,71,81]",IV major nine. Staggered entrances: A5 +240 ticks. No outgoing transition tones.
+034,4,12960,2400,27.000000000,5.000000000,Badd9,Vadd9,"[61,66,71,75]","No seventh. The leading tone D# is the third, not a dominant seventh's engine. Staggered entrances: D#5 +240 ticks. No outgoing transition tones."
+035,1,0,3360,0.000000000,7.000000000,Fmaj9,Imaj9,"[55,60,65,69,76]",Major nine. No outgoing transition tones.
+035,2,3360,3360,7.000000000,7.000000000,Dm7,vi7,"[50,60,65,69]",vi7. No outgoing transition tones.
+035,3,6720,4320,14.000000000,9.000000000,Bbmaj7,IVmaj7,"[50,58,65,69]","IV, the long welcome. No outgoing transition tones."
+035,4,11040,4320,23.000000000,9.000000000,Cadd9,Vadd9,"[50,55,60,76]","No seventh. Bb would be the b7 of C and is outside F Ionian, so it is not used here. No outgoing transition tones."
+036,1,0,2400,0.000000000,5.000000000,"Cmaj7(#11,no5)","Imaj7(#11,no5)","[59,66,72,76]",Fifth omitted so F# does not collide with G. Staggered entrances: F#4 +240 ticks. No outgoing transition tones.
+036,2,2400,2400,5.000000000,5.000000000,Em9,vi9,"[59,62,66,76,79]",vi9. F# can remain as the ninth. Staggered entrances: G5 +240 ticks. No outgoing transition tones.
+036,3,4800,2880,10.000000000,6.000000000,D6,IIadd6,"[59,62,66,81]","Added sixth, not a first-inversion numeral. B is the sixth. Staggered entrances: A5 +240 ticks. No outgoing transition tones."
+036,4,7680,3840,16.000000000,8.000000000,Gmaj7,Vmaj7,"[59,62,66,79]","F#, the Lydian #4, is the major seventh of G. Staggered entrances: G5 +240 ticks. No outgoing transition tones."
+036,5,11520,3840,24.000000000,8.000000000,C6/9,I6/9,"[57,62,72,76,79]",The #11 rests. Sixth and ninth only. Staggered entrances: E5 +240 ticks. No outgoing transition tones.
+037,1,0,10560,0.000000000,22.000000000,Bbmaj9,Imaj9,"[57,60,65,70,74]","Very long major nine. Staggered entrances: Bb4 +180 ticks, D5 +360 ticks. No outgoing transition tones."
+037,2,10560,6720,22.000000000,14.000000000,Gm7,vi7,"[55,65,70,74]",vi7. Staggered entrances: G3 +360 ticks. Outgoing transition tones still sounding in this event: C4.
+037,3,17280,7680,36.000000000,16.000000000,Ebmaj7,IVmaj7,"[55,63,70,74]",IV major seventh. Staggered entrances: Eb4 +360 ticks. No outgoing transition tones.
+037,4,24960,5760,52.000000000,12.000000000,Fsus2,Vsus2,"[55,60,65,77]","No third. G is the second, C is the fifth. A is left unspoken. Staggered entrances: F4 +180 ticks, F5 +360 ticks. Outgoing transition tones still sounding in this event: Bb4, D5."
+038,1,0,2400,0.000000000,5.000000000,B6/9,I6/9,"[59,63,68,73,78]",Sixth and ninth. No outgoing transition tones.
+038,2,2400,1440,5.000000000,3.000000000,Amaj7,bVIImaj7,"[64,68,73,81]",Short bVII. No outgoing transition tones.
+038,3,3840,1920,8.000000000,4.000000000,Eadd9,IVadd9,"[64,68,71,78]",IV add9. No outgoing transition tones.
+038,4,5760,1920,12.000000000,4.000000000,F#m7,v7,"[64,69,73,78]","Minor v. The Mixolydian tell, if the 6/9 did not already give it away. No outgoing transition tones."
+039,1,0,4320,0.000000000,9.000000000,"Abmaj7(#11,no5)","Imaj7(#11,no5)","[56,60,67,74]",Fifth omitted. D is the #11. Staggered entrances: D5 +240 ticks. No outgoing transition tones.
+039,2,4320,3840,9.000000000,8.000000000,Ebmaj9,Vmaj9,"[58,63,67,74,77]","D, the #4 of Ab, is the major seventh of Eb. Staggered entrances: F5 +240 ticks. No outgoing transition tones."
+039,3,8160,2880,17.000000000,6.000000000,Fm7,vi7,"[56,63,72,77]","vi7, diatonic to Lydian. Staggered entrances: C5 +240 ticks. No outgoing transition tones."
+039,4,11040,4320,23.000000000,9.000000000,Bb7sus4,II7sus4,"[56,63,70,77]","No third. The third would be D, the #11, and this chord lets it rest. Ab is the b7. Staggered entrances: Bb4 +240 ticks. No outgoing transition tones."
+040,1,0,1920,0.000000000,4.000000000,D6/9,I6/9,"[57,62,66,71,76]",Sixth and ninth above a clear fifth. No outgoing transition tones.
+040,2,1920,1920,4.000000000,4.000000000,Cmaj7,bVIImaj7,"[60,67,71,76]",Mixolydian bVII. No outgoing transition tones.
+040,3,3840,2880,8.000000000,6.000000000,Gadd9,IVadd9,"[57,67,71,74]","IV add9, the longer ember. No outgoing transition tones."
+040,4,6720,1920,14.000000000,4.000000000,Bm7,vi7,"[57,66,71,74]","E leaves the opening 6/9. B, D, F#, and A remain, which is vi7. No outgoing transition tones."
+040,5,8640,2880,18.000000000,6.000000000,Em7,ii7,"[55,64,71,74]",Minor ii. No outgoing transition tones.
+040,6,11520,3840,24.000000000,8.000000000,Dadd9,Iadd9,"[57,62,66,76]",The sixth is gone. The ninth remains. The loop restores the sixth. No outgoing transition tones.
+041,1,0,7680,0.000000000,16.000000000,Em7,i7,"[52,55,62,71]","No major ninth. Phrygian's second is F, not F#. Staggered entrances: G3 +180 ticks, B4 +360 ticks. No outgoing transition tones."
+041,2,7680,7680,16.000000000,16.000000000,Fmaj7,bIImaj7,"[52,57,65,72]","The petal. bII major seventh, spaced away from any lingering E. Staggered entrances: F4 +180 ticks, C5 +360 ticks. Outgoing transition tones still sounding in this event: D4."
+041,3,15360,5760,32.000000000,12.000000000,Cmaj7,bVImaj7,"[52,59,67,72]","bVI, still diatonic. Staggered entrances: B3 +180 ticks, G4 +360 ticks. No outgoing transition tones."
+041,4,21120,5760,44.000000000,12.000000000,Am7,iv7,"[52,57,67,72]",iv7. Staggered entrances: A3 +360 ticks. No outgoing transition tones.
+041,5,26880,3840,56.000000000,8.000000000,Dm7,bvii7,"[53,57,62,72]","Minor seven on bVII, not a dominant. The bloom closes downward. Staggered entrances: F3 +180 ticks, D4 +360 ticks. Outgoing transition tones still sounding in this event: G4."
+042,1,0,3840,0.000000000,8.000000000,Cm(maj7),i(maj7),"[55,60,71,75]","Minor triad, major seventh. B is in the collection. Staggered entrances: Eb5 +240 ticks. No outgoing transition tones."
+042,2,3840,2880,8.000000000,6.000000000,G7,V7,"[55,62,71,77]","The dominant arrives early, before bVI. Staggered entrances: F5 +240 ticks. No outgoing transition tones."
+042,3,6720,4800,14.000000000,10.000000000,Abmaj7,bVImaj7,"[55,60,68,75]","Long bVI after the dominant. A deceptive color, not a cadence. Staggered entrances: Eb5 +240 ticks. Outgoing transition tones still sounding in this event: B4."
+042,4,11520,3840,24.000000000,8.000000000,Dm7b5,iiø7,"[53,60,68,74]",Half-diminished ii. F and Ab are in C harmonic minor. Staggered entrances: D5 +240 ticks. No outgoing transition tones.
+043,1,0,8640,0.000000000,18.000000000,G#m9,i9,"[56,59,66,70,75]","Minor nine. A# is the ninth and is in Aeolian. Staggered entrances: A#4 +180 ticks, D#5 +360 ticks. No outgoing transition tones."
+043,2,8640,4800,18.000000000,10.000000000,Emaj7,bVImaj7,"[56,59,64,75]",bVI. Staggered entrances: E4 +360 ticks. Outgoing transition tones still sounding in this event: A#4.
+043,3,13440,6720,28.000000000,14.000000000,C#m7,iv7,"[56,59,64,73]",iv7. Staggered entrances: C#5 +360 ticks. No outgoing transition tones.
+043,4,20160,5760,42.000000000,12.000000000,D#m7,v7,"[51,58,66,73]","Minor v. Not a dominant. Staggered entrances: A#3 +180 ticks, F#4 +360 ticks. No outgoing transition tones."
+043,5,25920,4800,54.000000000,10.000000000,F#7sus4,bVII7sus4,"[52,59,66,73]","No third. B is the fourth. A# would be the major third and is not used. E is the b7. Staggered entrances: E3 +180 ticks, B3 +360 ticks. No outgoing transition tones."
+044,1,0,2880,0.000000000,6.000000000,Dm7,i7,"[62,69,72,77]",Minor seventh. No ninth E. No outgoing transition tones.
+044,2,2880,2880,6.000000000,6.000000000,Ebmaj7,bIImaj7,"[62,70,75,79]",Phrygian bII. Eb must be spaced from D. No outgoing transition tones.
+044,3,5760,5760,12.000000000,12.000000000,Cm7,bvii7,"[60,70,75,79]","Minor seven on bVII. The long chord, and not the iv of Old Station. No outgoing transition tones."
+044,4,11520,3840,24.000000000,8.000000000,Dsus4,isus4,"[62,69,74,79]",No third. G is the fourth. The loop restores F. No outgoing transition tones.
+045,1,0,5760,0.000000000,12.000000000,Fm(maj7),i(maj7),"[53,60,68,76]",E is in harmonic minor. It is not borrowed. No outgoing transition tones.
+045,2,5760,3840,12.000000000,8.000000000,Dbmaj7,bVImaj7,"[53,60,68,73]",bVI. Staggered entrances: Db5 +360 ticks. Outgoing transition tones still sounding in this event: E5.
+045,3,9600,5760,20.000000000,12.000000000,Bbm7,iv7,"[53,58,68,73]",iv7. Staggered entrances: Bb3 +360 ticks. No outgoing transition tones.
+045,4,15360,3840,32.000000000,8.000000000,C7sus4,V7sus4,"[53,58,72,79]","No third. The leading tone is withheld. F is the fourth. Staggered entrances: C5 +180 ticks, G5 +360 ticks. Outgoing transition tones still sounding in this event: Ab4."
+045,5,19200,5760,40.000000000,12.000000000,C7,V7,"[52,58,72,79]",The fourth resolves to E. This is the bloom. Staggered entrances: E3 +360 ticks. No outgoing transition tones.
+045,6,24960,5760,52.000000000,12.000000000,Fm(maj9),i(maj9),"[53,60,68,76,79]","Major seventh remains. G is the ninth. Eb is not used, because harmonic minor has E. Staggered entrances: Ab4 +180 ticks, E5 +360 ticks. Outgoing transition tones still sounding in this event: C5."
+046,1,0,3360,0.000000000,7.000000000,Bm,i,"[59,62,71,78]","Minor triad. Sparse, so the later chords can bloom. No outgoing transition tones."
+046,2,3360,2400,7.000000000,5.000000000,Cmaj7,bIImaj7,"[59,64,72,79]",Phrygian bII. C spaced from B. Staggered entrances: C5 +200 ticks. No outgoing transition tones.
+046,3,5760,2880,12.000000000,6.000000000,Gmaj7,bVImaj7,"[59,66,74,79]",Velvet bVI. Staggered entrances: F#4 +200 ticks. No outgoing transition tones.
+046,4,8640,1920,18.000000000,4.000000000,Em7,iv7,"[59,64,74,79]",iv7. No outgoing transition tones.
+046,5,10560,2880,22.000000000,6.000000000,D7,bIII7,"[60,69,74,78]",Phrygian bIII is a dominant seventh. F# is the third and is in the mode. F natural is not. Staggered entrances: A4 +200 ticks. No outgoing transition tones.
+046,6,13440,1920,28.000000000,4.000000000,Bsus4,isus4,"[59,64,71,78]",No third. E is the fourth. The loop restores D. Staggered entrances: E4 +200 ticks. No outgoing transition tones.
+047,1,0,9600,0.000000000,20.000000000,C#m9,i9,"[61,64,68,71,75]","Dorian minor nine. A# is not in this chord. The sixth waits. Staggered entrances: E4 +180 ticks, G#4 +360 ticks. No outgoing transition tones."
+047,2,9600,7680,20.000000000,16.000000000,Emaj7,bIIImaj7,"[64,68,71,75]",bIII. D# is its major seventh and the ninth of i. No outgoing transition tones.
+047,3,17280,6720,36.000000000,14.000000000,F#6,IVadd6,"[61,66,70,75]","Added sixth D#. Not a major seventh, because E# is outside the mode. Staggered entrances: F#4 +180 ticks, A#4 +360 ticks. No outgoing transition tones."
+047,4,24000,6720,50.000000000,14.000000000,Bmaj7,bVIImaj7,"[58,66,71,75]","A# , the Dorian sixth, is the major seventh of B. Staggered entrances: A#3 +180 ticks, B4 +360 ticks. No outgoing transition tones."
+048,1,0,2880,0.000000000,6.000000000,Gm11(no3),i11(no3),"[55,62,65,69,72]","Third omitted. A is the ninth, C the eleventh, F the seventh. Staggered entrances: G3 +200 ticks. No outgoing transition tones."
+048,2,2880,3840,6.000000000,8.000000000,Ebmaj9,bVImaj9,"[55,62,65,70,75]",bVI major nine. Staggered entrances: Bb4 +200 ticks. No outgoing transition tones.
+048,3,6720,2400,14.000000000,5.000000000,Cm7,iv7,"[55,60,70,75]",iv7. No outgoing transition tones.
+048,4,9120,3360,19.000000000,7.000000000,Dsus4,vsus4,"[55,62,69,74]",No third. G is the fourth. F# is not here yet. Staggered entrances: A4 +200 ticks. No outgoing transition tones.
+048,5,12480,2880,26.000000000,6.000000000,D7,V7,"[54,62,69,72]","F# enters. It is outside G Aeolian. Borrowed harmonic-minor dominant. C, the seventh, is diatonic. Staggered entrances: F#3 +200 ticks. No outgoing transition tones."
+049,1,0,11520,0.000000000,24.000000000,Ebm9,i9,"[58,63,66,73,77]","Very slow minor nine. Gb, not G. Staggered entrances: Gb4 +180 ticks, F5 +360 ticks. No outgoing transition tones."
+049,2,11520,7680,24.000000000,16.000000000,Cbmaj7,bVImaj7,"[58,63,66,71]","bVI. Cb is the b6 of Eb, diatonic, spelled Cb. Staggered entrances: Cb5 +360 ticks. Outgoing transition tones still sounding in this event: F5."
+049,3,19200,6720,40.000000000,14.000000000,Bbm7,v7,"[58,65,68,73]","Minor v. Staggered entrances: Ab4 +180 ticks, Db5 +360 ticks. No outgoing transition tones."
+049,4,25920,4800,54.000000000,10.000000000,Db7,bVII7,"[59,65,68,73]","bVII seventh. The seventh is Cb, which is in Aeolian. C natural is not used. Staggered entrances: Cb4 +360 ticks. No outgoing transition tones."
+050,1,0,2400,0.000000000,5.000000000,Am,i,"[57,60,64,69]",Minor triad. B is not the ninth. The mode's second is Bb. No outgoing transition tones.
+050,2,2400,3360,5.000000000,7.000000000,Bbmaj9,bIImaj9,"[57,60,65,70,74]","A, the tonic, is the major seventh of Bb. C is the ninth. Both are in A Phrygian. Staggered entrances: Bb4 +200 ticks. No outgoing transition tones."
+050,3,5760,1920,12.000000000,4.000000000,Fmaj7,bVImaj7,"[57,60,65,76]",bVI. No outgoing transition tones.
+050,4,7680,2880,16.000000000,6.000000000,Dm7,iv7,"[57,60,65,74]",iv7. No outgoing transition tones.
+050,5,10560,2400,22.000000000,5.000000000,Asus4(b9),isus4(b9),"[57,64,70,74]","No third. Bb is the b9, spaced from A. D is the fourth. E is the fifth. Staggered entrances: E4 +200 ticks. No outgoing transition tones."
+050,6,12960,2400,27.000000000,5.000000000,Am7,i7,"[57,60,64,79]",The third C returns. The b9 does not. Staggered entrances: C4 +200 ticks. No outgoing transition tones.
