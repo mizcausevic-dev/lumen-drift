@@ -1,0 +1,132 @@
+{
+  "title": "Lumen Drift validation",
+  "result": "pass",
+  "payload_sha256": "5d54d1790ca3b244110f18c9314c4098cd3a106d073b5f62dfd6c616eaf86584",
+  "validator": "tools/build_collection.py",
+  "summary": {
+    "midi_files": 50,
+    "note_events": 556,
+    "harmonic_events": 238,
+    "checks": 15,
+    "passed": 15,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "id": "files",
+      "name": "File count and groups",
+      "status": "pass",
+      "detail": "Exactly 50 MIDI files, 10 in each of the five groups, IDs 001-050.",
+      "problems": []
+    },
+    {
+      "id": "format",
+      "name": "Format and resolution",
+      "status": "pass",
+      "detail": "Each file parses as Standard MIDI Format 0, one track, 480 ticks per quarter.",
+      "problems": []
+    },
+    {
+      "id": "meta",
+      "name": "Tempo and time signature",
+      "status": "pass",
+      "detail": "Track name, tempo, and 4/4 time signature are at tick 0. No program change, pitch bend, or controller.",
+      "problems": []
+    },
+    {
+      "id": "pairing",
+      "name": "Note pairing",
+      "status": "pass",
+      "detail": "Every note-on has one note-off. No unmatched note-off. Note-offs are ordered before note-ons at the same tick.",
+      "problems": []
+    },
+    {
+      "id": "eot",
+      "name": "End of track",
+      "status": "pass",
+      "detail": "End of track is the only terminal meta, at the declared loop length, after any note-offs on that tick.",
+      "problems": []
+    },
+    {
+      "id": "range",
+      "name": "Pitch, velocity, and bounds",
+      "status": "pass",
+      "detail": "Pitches are inside 36-96, velocities are 1-127, durations are positive, and no note crosses the loop.",
+      "problems": []
+    },
+    {
+      "id": "polyphony",
+      "name": "Overlap and polyphony",
+      "status": "pass",
+      "detail": "The same MIDI pitch is never active twice. Active notes never exceed 12.",
+      "problems": []
+    },
+    {
+      "id": "csv",
+      "name": "Note CSV equality",
+      "status": "pass",
+      "detail": "Parsed notes match the note CSV in pitch, tick, duration, and velocity.",
+      "problems": []
+    },
+    {
+      "id": "beats",
+      "name": "Beat rounding",
+      "status": "pass",
+      "detail": "Beat columns match ticks / 480 within 0.0000000005 beats.",
+      "problems": []
+    },
+    {
+      "id": "tempo",
+      "name": "Tempo encoding",
+      "status": "pass",
+      "detail": "Tempo meta matches the index and the half-up rounding of 60,000,000 / BPM. Every integer from 70 through 115 round-trips.",
+      "problems": []
+    },
+    {
+      "id": "harmony",
+      "name": "Harmonic partitions",
+      "status": "pass",
+      "detail": "Each loop has 2 to 8 harmonic events whose tick intervals partition the loop.",
+      "problems": []
+    },
+    {
+      "id": "collection",
+      "name": "Pitch collections",
+      "status": "pass",
+      "detail": "Sounding pitch classes outside the named collection match the index. Aeolian is the only name used for natural minor.",
+      "problems": []
+    },
+    {
+      "id": "symbols",
+      "name": "Chord symbols",
+      "status": "pass",
+      "detail": "Chord-symbol intervals are present in the intended voicing. Omissions are written into the symbol.",
+      "problems": []
+    },
+    {
+      "id": "romans",
+      "name": "Roman numerals",
+      "status": "pass",
+      "detail": "Roman numeral case matches chord quality, measured from the parallel major.",
+      "problems": []
+    },
+    {
+      "id": "duplicates",
+      "name": "Duplicate detection",
+      "status": "pass",
+      "detail": "No exact copy, no constant transposition, and no unchanged shorter loop repeated inside a longer file.",
+      "problems": []
+    }
+  ],
+  "shared_roman_sequences": [],
+  "shared_harmonic_rhythms": [],
+  "loops_without_a_common_tone_boundary": [],
+  "limitations": [
+    "Audio was not rendered.",
+    "The loops were not auditioned. The browser synth is a preview, not a hearing test.",
+    "Whether a borrowed chord feels nostalgic is a reading of the voicing ledger, not a scored classifier.",
+    "A DAW was not asked to cycle the files. Loop length is in the index because a DAW will not infer it.",
+    "The digest covers the MIDI files and the three CSV tables. It does not cover this report or the zip."
+  ],
+  "reproduce": "python3 tools/build_collection.py"
+}
