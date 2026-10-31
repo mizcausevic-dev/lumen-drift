@@ -1,0 +1,24 @@
+{
+  "label": "General MIDI FluidR3 preview, not a master",
+  "why_fluidr3": "tools/ builds and checks MIDI. It does not render audio. The pad synth in web/src/audio.ts is a live browser preview and does not write a file.",
+  "source": "midi/001-glass-harbor.mid",
+  "source_sha256": "da3a49fe5fa958d5d86b49fff82a94ad1750c126a9c4b71212aa5c1ddce38289",
+  "soundfont": "FluidR3_GM.sf2",
+  "program_change_in_file": false,
+  "gm_program": "No program change in the file. FluidR3 plays the default Acoustic Grand Piano.",
+  "looped_to_fill_preview": false,
+  "score_seconds": 25.945952,
+  "repeats": null,
+  "audio": "media/preview-Cursor/lumen-drift-preview-Cursor.mp3",
+  "video": "media/preview-Cursor/lumen-drift-preview-Cursor.mp4",
+  "captions": "media/preview-Cursor/lumen-drift-preview-Cursor.vtt",
+  "audio_sha256": "efb312c60fd58abaf9487b44dac59e127f37120b1761edd62dac0e03a4688414",
+  "video_sha256": "3e71876413ea5dd33d5c5d9befcc8ad0ebce5b75ed0f9c68bd15bd1b7a4b480d",
+  "on_screen_text": "preview, not master",
+  "art": [
+    "web/public/images/hero-lumen-drift.jpg",
+    "web/public/images/medium-hero-lumen-drift.jpg",
+    "web/public/images/group-suspended-light.jpg",
+    "web/public/images/group-nocturnal-bloom.jpg"
+  ]
+}
